@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "github contributions paint",
+    "description": "The name of the application"
+  },
+  "appShortName": {
+    "message": "github paint",
+    "description": "The short_name (maximum of 12 characters recommended) is a short version of the app's name."
+  },
+  "appDescription": {
+    "message": "You can paint your contributes on Github!",
+    "description": "The description of the application"
+  }
+}
