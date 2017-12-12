@@ -11,7 +11,7 @@ import args from './lib/args'
 const ENV = args.production ? 'production' : 'development'
 
 gulp.task('scripts', (cb) => {
-  return gulp.src('app/scripts/*.js')
+  return gulp.src(['app/scripts/*.js', 'app/scripts/*.ts'])
     .pipe(plumber({
       // Webpack will log the errors
       errorHandler () {}
@@ -26,13 +26,24 @@ gulp.task('scripts', (cb) => {
           'process.env.VENDOR': JSON.stringify(args.vendor)
         })
       ].concat(args.production ? [
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.ModuleConcatenationPlugin()
       ] : []),
       module: {
-        rules: [{
-          test: /\.js$/,
-          loader: 'babel-loader'
-        }]
+        rules: [
+          {
+            test: /\.ts$/,
+            loader: 'ts-loader',
+            exclude: /node_modules/
+          }
+        ]
+      },
+      resolve: {
+        extensions: ['.ts', '.js'],
+        modules: [
+          'node_modules/',
+          'app/scripts/'
+        ]
       }
     },
     webpack,

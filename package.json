@@ -1,7 +1,7 @@
 {
   "name": "github-contributions-paint",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "You can paint your contributes on Github!",
   "scripts": {
     "start": "npm run dev:chrome",
@@ -23,6 +23,7 @@
     ]
   },
   "devDependencies": {
+    "@types/chrome": "^0.x.x",
     "babel-cli": "6.x.x",
     "babel-core": "6.x.x",
     "babel-loader": "7.x.x",
@@ -51,6 +52,9 @@
     "gulp-zip": "^4.x.x",
     "require-dir": "0.x.x",
     "standard": "^10.0.2",
+    "ts-loader": "^2.x.x",
+    "tslint": "^5.x.x",
+    "typescript": "^2.6.2",
     "vinyl-named": "1.x.x",
     "webpack": "3.x.x",
     "webpack-stream": "3.x.x",

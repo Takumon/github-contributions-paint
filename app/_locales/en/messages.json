@@ -8,7 +8,7 @@
     "description": "The short_name (maximum of 12 characters recommended) is a short version of the app's name."
   },
   "appDescription": {
-    "message": "You can paint your contributes on Github!",
+    "message": "You can paint github contributions panel",
     "description": "The description of the application"
   }
 }
