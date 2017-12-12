@@ -1,7 +1,7 @@
 {
   "name": "github-contributions-paint",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "You can paint your contributes on Github!",
   "scripts": {
     "start": "npm run dev:chrome",
