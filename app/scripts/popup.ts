@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 入力項目に色が指定された場合にそれをcurColorに設定する
   const $colorInput = <HTMLInputElement>document.getElementById('colorInput');
   $colorInput.addEventListener('input', function() {
-    changeColor($colorInput.value);
+    setSelectedColor($colorInput.value);
   });
 
   // curColorを入力項目の値に初期値として設定する
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Colorがクリック時の処理
 function onClick(event: Event) {
   const target = <HTMLElement> event.target;
-  changeColor(target.getAttribute('data-id'));
+  setSelectedColor(target.getAttribute('data-id'));
 }
 
 
@@ -43,7 +43,7 @@ function onClick(event: Event) {
  *
  * @param color 色
  */
-function changeColor(color: string | null) {
+function setSelectedColor(color: string | null) {
   if (!color) return;
 
   chrome.storage.sync.set({ 'curColor': color }, () => console.log('Color changed'));
