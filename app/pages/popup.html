@@ -1,16 +1,43 @@
 <!doctype html>
 <html>
 <head>
-  <title>色を設定</title>
-  <link rel="stylesheet" type="text/css" href="../styles/popup.css">
-  <script src="../scripts/popup.js"></script>
+    <meta charset="utf-8" />
+    <title>Githubの草でお絵描き&テーマ色カスタム</title>
+    <link href="../styles/popup.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <input id="colorInput" type="text" name="color" value="">
-  <div class="color" id="s1" data-id="#eee"></div>
-  <div class="color" id="s2" data-id="#d6e685"></div>
-  <div class="color" id="s3" data-id="#8cc665"></div>
-  <div class="color" id="s4" data-id="#44a340"></div>
-  <div class="color" id="s5" data-id="#1e6823"></div>
+色を選択してください:
+<select id="color">
+    <option value="github">GitHub Default</option>
+    <option value="halloween">Halloween</option>
+    <option disabled>──────────</option>
+    <option value="amber">Amber</option>
+    <option value="blue">Blue</option>
+    <option value="bluegrey">Blue Grey</option>
+    <option value="brown">Brown</option>
+    <option value="cyan">Cyan</option>
+    <option value="deeporange">Deep Orange</option>
+    <option value="deeppurple">Deep Purple</option>
+    <option value="green">Green</option>
+    <option value="grey">Grey</option>
+    <option value="indigo">Indigo</option>
+    <option value="lightblue">Light Blue</option>
+    <option value="lightgreen">Light Green</option>
+    <option value="lime">Lime</option>
+    <option value="orange">Orange</option>
+    <option value="pink">Pink</option>
+    <option value="purple">Purple</option>
+    <option value="red">Red</option>
+    <option value="teal">Teal</option>
+    <option value="yellowMd">Yellow</option>
+    <option disabled>──────────</option>
+    <option value="moon">Moon</option>
+    <option value="psychedelic">Psychedelic</option>
+    <option value="yellow">Yellow</option>
+</select>
+<br />
+<div id="status" style="color:rgb(87, 74, 233)"></div>
+<br />
+<script src="../scripts/popup.js"></script>
 </body>
 </html>

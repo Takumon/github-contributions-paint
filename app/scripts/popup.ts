@@ -1,50 +1,48 @@
+import { Constant } from './constant';
+
+let $status: HTMLElement;
+let $color: HTMLInputElement;
+let $saveBtn: HTMLElement;
+
+document.addEventListener('DOMContentLoaded', init);
+
 /**
- * 初期ロード時の処理
+ * 初期化処理
  */
-document.addEventListener('DOMContentLoaded', () => {
-  // corColorが変わった時に、入力項目に反映させる
-  chrome.storage.onChanged.addListener((changes, namespace) => {
-    chrome.storage.sync.get('curColor', function(item) {
-        const $colorInput = <HTMLInputElement>document.getElementById('colorInput');
-        if ($colorInput) {
-          $colorInput.value = item.curColor;
-        }
-    });
-  });
+function init() {
+  cacheDom();
+  $color.addEventListener('change', saveTheme, false);
+  restoreOptions();
+}
 
-
-  // 入力項目に色が指定された場合にそれをcurColorに設定する
-  const $colorInput = <HTMLInputElement>document.getElementById('colorInput');
-  $colorInput.addEventListener('input', function() {
-    setSelectedColor($colorInput.value);
-  });
-
-  // curColorを入力項目の値に初期値として設定する
-  chrome.storage.sync.get('curColor', (item) => {
-      const $colorInput = <HTMLInputElement>document.getElementById('colorInput');
-      $colorInput.value = item.curColor;
-  });
-
-  const $colors = document.querySelectorAll('.color');
-  for (let i = 0; i < $colors.length; i++) {
-      $colors[i].addEventListener('click', onClick);
-  }
-});
-
-// Colorがクリック時の処理
-function onClick(event: Event) {
-  const target = <HTMLElement> event.target;
-  setSelectedColor(target.getAttribute('data-id'));
+/**
+ * 初期表示時に本ファイルの処理で使用するDOMをキャッシュする.
+ */
+function cacheDom() {
+  $status = <HTMLElement>document.getElementById('status');
+  $color = <HTMLInputElement>document.getElementById('color');
+  $saveBtn = <HTMLElement>document.getElementById('save');
 }
 
 
 /**
- * 色変更
- *
- * @param color 色
+ * テーマを選択しストレージに保存する.
  */
-function setSelectedColor(color: string | null) {
-  if (!color) return;
+function saveTheme() {
+  const item: any = {};
+  item[Constant.STORAGE_KEY_OF_SELECTED_THEME] = $color.value;
+  chrome.storage.local.set(item, () => {
+    $status.textContent = '設定を保存しました。';
 
-  chrome.storage.sync.set({ 'curColor': color }, () => console.log('Color changed'));
+    setTimeout(() => $status.textContent = '', 1000);
+  });
+}
+
+/**
+ * プルダウンに選択済みテーマを設定する.
+ */
+function restoreOptions() {
+  chrome.storage.local.get(Constant.STORAGE_KEY_OF_SELECTED_THEME, item => {
+    $color.value = item[Constant.STORAGE_KEY_OF_SELECTED_THEME] || Constant.DEFAULT_THEME;
+  });
 }
