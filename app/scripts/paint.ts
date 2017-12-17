@@ -97,9 +97,7 @@ function addEventListener() {
 function findSelectedColor(): HTMLElement | null {
   for ( let i = 0, len = $colors.length; i < len; i++) {
     const $color = <HTMLElement>$colors[i];
-    if ($color.style
-      &&  $color.style.background
-      && $color.style.background.startsWith(Constant.SELECTED_COLOR_STYLE_PREFIX)) {
+    if ($color.style &&  $color.style.boxShadow) {
       return $color;
     }
   }
