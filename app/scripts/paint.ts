@@ -84,7 +84,7 @@ function addEventListener() {
     const $contribution = <Element>$contributionList.item(i);
     // mouseenterをデリゲートしたいのでキャプチャフェーズでイベントを監視する
     $contribution.addEventListener('mouseenter', paint);
-    $contribution.addEventListener('click', paintOnClick);
+    $contribution.addEventListener('mousedown', paintOnClick);
   }
 }
 
