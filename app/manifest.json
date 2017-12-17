@@ -22,6 +22,9 @@
     "js": [
       "scripts/paint.js",
       "scripts/control-theme.js"
+    ],
+    "css": [
+      "styles/inject.css"
     ]
   }]
 }

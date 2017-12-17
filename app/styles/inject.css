@@ -1,0 +1,12 @@
+.svg-tip {
+  display: none;
+}
+
+.js-calendar-graph-svg .day {
+  cursor: pointer;
+}
+
+.js-calendar-graph-svg .day:hover {
+  stroke-width: 1px;
+  stroke: black;
+}
