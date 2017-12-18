@@ -10,9 +10,16 @@ init();
 function init() {
   // 初回はGithubのテーマからの変更
   chrome.storage.local.get(Constant.STORAGE_KEY_OF_SELECTED_THEME, item => {
-    // 未設定、またはデフォルトテーマの場合は変更する必要がない
+    // 未設定の場合デフォルトテーマをセットする
     const theme = item[Constant.STORAGE_KEY_OF_SELECTED_THEME];
-    if (!theme || Constant.DEFAULT_THEME === theme) return;
+    if (!theme) {
+      const item: any = {};
+      item[Constant.STORAGE_KEY_OF_SELECTED_THEME] = Constant.DEFAULT_THEME;
+      chrome.storage.local.set(item);
+    }
+
+    // デフォルトテーマの場合は変更する必要がないためなにもしない
+    if (Constant.DEFAULT_THEME === theme) return;
 
     changeTheme(Constant.DEFAULT_THEME, theme);
   });
