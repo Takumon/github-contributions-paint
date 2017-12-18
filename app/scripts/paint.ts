@@ -84,6 +84,7 @@ function addEventListener() {
     const $contribution = <Element>$contributionList.item(i);
     // mouseenterをデリゲートしたいのでキャプチャフェーズでイベントを監視する
     $contribution.addEventListener('mouseenter', paint);
+    $contribution.addEventListener('click', preventClickWhenPainting);
     $contribution.addEventListener('mousedown', paintOnClick);
   }
 }
@@ -227,6 +228,13 @@ function saveSelectedColor(color: string | null) {
 }
 
 
+// ペイント中はContributionsのマスをクリックした時の画面繊維を抑止する
+function preventClickWhenPainting(event: any) {
+  if (!nowPainting) return;
+  event.preventDefault();
+  event.stopPropagation();
+}
+
 // 色をセットする
 function paintOnClick(event: any) {
   if (!nowPainting) return;
@@ -240,6 +248,7 @@ function paintOnClick(event: any) {
     target.setAttribute('fill', item[Constant.STORAGE_KEY_OF_SELECTED_COLOR]);
   });
 }
+
 
 function paint(event: any) {
   if (!nowPainting) return;
